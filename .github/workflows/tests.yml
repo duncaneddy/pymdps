@@ -1,7 +1,7 @@
 name: Test Python
 on: [ workflow_call ]
 jobs:
-    test-python:
+    test:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
@@ -21,7 +21,5 @@ jobs:
                 python-version: ${{ matrix.python-version }}
             - name: Install dependencies
               run: python -m pip install --upgrade pip
-            - name: Install all dependencies
-              run: make install
-            - name: Run Tests
+            - name: Run tests
               run: make test

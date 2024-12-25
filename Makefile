@@ -18,12 +18,16 @@ clean:
 	rm -rf perf.data*
 	rm -rf python/pymdps/*.so
 
+.PHONY: install-dev
+install-dev: clean
+	pip install -e ".[all]"
+
 .PHONY: install
 install: clean
 	pip install -e .
 
 .PHONY: test
-test:
+test: install-dev
 	pytest -v --cov=python/pymdps --cov-report=term-missing --cov-report=html tests
 
 .PHONY: all
