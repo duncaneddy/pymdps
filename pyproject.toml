@@ -1,0 +1,55 @@
+[project]
+name = "pymdps"
+description = """
+pymdps is a Python package for working with Markov Decision Processes (MDPs) and
+Partially Observable Markov Decision Processes (POMDPs). It is meant to be fast,
+understandable, and easy to use.
+"""
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+keywords = ["MDP", "POMDP", "Markov Decision Processes", "AI", "Reinforcement Learning"]
+maintainers = [
+    { name = "Duncan Eddy", email = "duncan.eddy@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    # Specify the Python versions you support here.
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "matplotlib",
+    "plotly",
+]
+# urls = [
+#     {name = "Homepage", url = "https://github.com/duncaneddy/pymdps"},
+#     {name = "Documentation", url = "https://duncaneddy.github.io/pymdps/"},
+#     {name = "Repository", url = "https://github.com/duncaneddy/pymdps"},
+# ]
+
+[project.optional-dependencies]
+testing = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+]
+all = ["pymdps[testing]"]
+
+[build-system]
+requires = [
+    'maturin>=1,<2',
+]
+build-backend = 'maturin'
+
+
+[tool.maturin]
+python-source = "python"
+module-name = "pymdps._pymdps"
+bindings = 'pyo3'
+features = ["pyo3/extension-module"]

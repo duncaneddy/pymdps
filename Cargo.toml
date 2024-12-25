@@ -1,0 +1,38 @@
+[package]
+name = "pymdps"
+version = "0.1.0"
+edition = "2024"
+authors = ["Duncan Eddy <duncan.eddy@gmail.com>"]
+description = """
+pymdps is a Python package for working with Markov Decision Processes (MDPs) and
+Partially Observable Markov Decision Processes (POMDPs). It is meant to be fast,
+understandable, and easy to use.
+"""
+readme = "README.md"
+license = "MIT"
+exclude = ["/test_data", "/test", "/scripts", "/docs", "/brahe", ".github"]
+homepage = "https://github.com/duncaneddy/pymdps"
+documentation = "https://duncaneddy.github.io/pymdps/"
+repository = "https://github.com/duncaneddy/pymdps"
+issues = "https://github.com/duncaneddy/pymdps/pulls"
+
+[dependencies]
+pyo3 =  { version = "0.23.3", features = ["generate-import-lib"] }
+
+[lib]
+name = "_pymdps"
+crate-type = ["cdylib"]
+
+[features]
+# must be enabled when building with `cargo build`, maturin enables this automatically
+extension-module = ["pyo3/extension-module"]
+
+# Build Profiles
+[profile.dev]
+opt-level = 0
+lto = "off"
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = "fat"

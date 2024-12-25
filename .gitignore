@@ -1,3 +1,15 @@
+# Development Environment
+.vscode/
+.idea/
+.python-version
+
+# Rust
+target/
+Cargo.lock
+rustc
+*.iml
+*.swp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
