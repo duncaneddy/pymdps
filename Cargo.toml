@@ -1,7 +1,7 @@
 [package]
 name = "pymdps"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 authors = ["Duncan Eddy <duncan.eddy@gmail.com>"]
 description = """
 pymdps is a Python package for working with Markov Decision Processes (MDPs) and
