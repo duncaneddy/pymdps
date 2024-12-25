@@ -63,7 +63,7 @@ impl MDPSolver {
 }
 
 #[pymodule]
-pub fn brahe_module(module: &Bound<'_, PyModule>) -> PyResult<()> {
+pub fn _pymdps(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<BaseMDP>()?;
     module.add_class::<MDPSolver>()?;
     Ok(())

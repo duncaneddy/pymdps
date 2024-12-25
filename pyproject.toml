@@ -52,4 +52,4 @@ build-backend = 'maturin'
 python-source = "python"
 module-name = "pymdps._pymdps"
 bindings = 'pyo3'
-features = ["pyo3/extension-module"]
+features = ["pyo3/extension-module"] 
