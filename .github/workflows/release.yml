@@ -1,0 +1,38 @@
+name: Publish Release
+
+# Only trigger on tags
+on:
+  release:
+    types: [published]
+
+
+jobs:
+    tests:
+        uses: ./.github/workflows/tests.yml
+
+    release:
+        needs: [tests]
+        if: needs.tests.outputs.result == 'success' && github.event.action == 'published'
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ ubuntu-latest ]
+                python-version: [ '3.9', '3.10', '3.11', '3.12', '3.13' ]
+        environment: release
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v5
+              with:
+                python-version: ${{ matrix.python-version }}
+
+            - name: Install 'build' library
+              run: pip install -U build
+
+            - name: Build library
+              run: python -m build
+
+            - name: Upload package to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1

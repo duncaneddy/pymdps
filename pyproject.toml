@@ -27,11 +27,12 @@ dependencies = [
     "matplotlib",
     "plotly",
 ]
-# urls = [
-#     {name = "Homepage", url = "https://github.com/duncaneddy/pymdps"},
-#     {name = "Documentation", url = "https://duncaneddy.github.io/pymdps/"},
-#     {name = "Repository", url = "https://github.com/duncaneddy/pymdps"},
-# ]
+
+[project.urls]
+Documentation = "https://duncaneddy.github.io/pymdps/"
+Repository = "https://github.com/duncaneddy/pymdps"
+Issues = "https://github.com/duncaneddy/pymdps/pulls"
+
 
 [project.optional-dependencies]
 testing = [
