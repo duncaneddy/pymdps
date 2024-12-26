@@ -18,11 +18,11 @@ pip install git+https://github.com/duncaneddy/pymdps
 
 ## Creating an MDP
 
-<!-- A Markov Decision Process (MDP) is defined by a tuple $(S, A, P, R, \gamma)$
-where $S$ is the set of states, $A$ is the set of actions, $P(s' \mid s, a)$ is the transition probability function, $$R(s, a, s')$$ is the reward function, and $$\gamma$$ is the discount factor. -->
+A Markov Decision Process (MDP) is defined by a tuple $(S, A, P, R, \gamma)$
+where $S$ is the set of states, $A$ is the set of actions, $P(s' \mid s, a)$ is the transition probability function, $R(s, a, s')$ is the reward function, and $\gamma$ is the discount factor.
 
-<!-- === "Python"
+=== "Python"
 
     ``` python
-    --8<-- "../examples/gridworld.py"
-    ``` -->
+    --8<-- "./examples/gridworld.py"
+    ```

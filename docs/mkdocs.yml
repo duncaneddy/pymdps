@@ -56,10 +56,27 @@ markdown_extensions:
   - admonition
   - footnotes
   - tables
-  -   toc:
-          permalink: true
-          toc_depth: 3
-
+  - toc:
+      permalink: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
 nav:
   - PyMDPs: index.md
   - Getting Started (Tutorials & Guides):
