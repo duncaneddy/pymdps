@@ -5,10 +5,6 @@ on:
   release:
     types: [published]
 
-permissions:
-  id-token: write
-
-
 jobs:
   tests:
     uses: ./.github/workflows/tests.yml
@@ -112,6 +108,8 @@ jobs:
     needs: [build-source, build-wheels]
     runs-on: ubuntu-latest
     environment: release
+    permissions:
+      id-token: write
 
     steps:
       - name: Download artifact
