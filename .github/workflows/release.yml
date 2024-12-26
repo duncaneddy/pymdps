@@ -10,9 +10,9 @@ jobs:
   tests:
     uses: ./.github/workflows/tests.yml
 
-  release:
+  build-release:
     needs: [tests]
-    if: needs.tests.outputs.result == 'success' && github.event.action == 'published'
+    if: needs.tests.outputs.result == 'success'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -39,5 +39,24 @@ jobs:
       - name: Build library
         run: python -m build
 
-      - name: Upload package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: dist/*
+
+  # publish-release:
+  #   needs: [build-release]
+  #   if: needs.build-release.outputs.result == 'success'
+  #   runs-on: ubuntu-latest
+  #   environment: release
+
+  #   steps:
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: dist
+    
+  #     - name: Upload package to PyPI
+  #       uses: pypa/gh-action-pypi-publish@release/v1
+
+  
