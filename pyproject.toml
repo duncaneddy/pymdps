@@ -5,7 +5,7 @@ pymdps is a Python package for working with Markov Decision Processes (MDPs) and
 Partially Observable Markov Decision Processes (POMDPs). It is meant to be fast,
 understandable, and easy to use.
 """
-readme = "README.md"
+readme = "package-description.md"
 version = "0.1.0"
 requires-python = ">=3.9"
 license = { file = "LICENSE" }
