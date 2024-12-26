@@ -1,4 +1,4 @@
-name: Publish Release
+name: Release Package
 
 # Only trigger on tags
 on:
@@ -39,7 +39,7 @@ jobs:
         run: python -m build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*
 
@@ -50,7 +50,7 @@ jobs:
 
   #   steps:
   #     - name: Download artifact
-  #       uses: actions/download-artifact@v2
+  #       uses: actions/download-artifact@v4
   #       with:
   #         name: dist
     

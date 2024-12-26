@@ -1,4 +1,4 @@
-name: Test Python
+name: Test Python (Subworkflow)
 
 on: [ workflow_call ]
 
