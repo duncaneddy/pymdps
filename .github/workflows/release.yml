@@ -12,7 +12,6 @@ jobs:
 
   build-release:
     needs: [tests]
-    if: needs.tests.outputs.result == 'success'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -46,7 +45,6 @@ jobs:
 
   # publish-release:
   #   needs: [build-release]
-  #   if: needs.build-release.outputs.result == 'success'
   #   runs-on: ubuntu-latest
   #   environment: release
 
