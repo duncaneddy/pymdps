@@ -10,7 +10,40 @@ jobs:
   tests:
     uses: ./.github/workflows/tests.yml
 
-  build-release:
+  build-source:
+    needs: [tests]
+    runs-on: ubuntu-latest
+    environment: release
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        python-version: [ '3.12' ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Set up Python #{{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: #{{ matrix.python-version }}
+
+      - name: Install 'build' library
+        run: pip install -U build
+
+      - name: Build library
+        run: python -m build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist/*.tar.gz
+
+  build-wheels:
     needs: [tests]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -41,20 +74,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: dist/*
+          path: dist/*.whl
 
-  # publish-release:
-  #   needs: [build-release]
-  #   runs-on: ubuntu-latest
-  #   environment: release
+  publish-release:
+    needs: [build-source, build-wheels]
+    runs-on: ubuntu-latest
+    environment: release
 
-  #   steps:
-  #     - name: Download artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: dist
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
     
-  #     - name: Upload package to PyPI
-  #       uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   
