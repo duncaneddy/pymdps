@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.tar.gz
-          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}.tar.gz
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-source
 
   build-wheels:
     needs: [tests]
@@ -102,7 +102,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.whl
-          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-cp${{ steps.py_version.outputs.PY_VERSION_NO_DOT }}-${{ runner.os }}.whl
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-cp${{ steps.py_version.outputs.PY_VERSION_NO_DOT }}-${{ runner.os }}-wheel
 
   publish-release:
     needs: [build-source, build-wheels]
@@ -115,11 +115,9 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          path: ./dist
+          path: dist/
 
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: ./dist
 
   
