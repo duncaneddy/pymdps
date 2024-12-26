@@ -2,7 +2,7 @@
   <a href="https://github.com/duncaneddy/pymdps/"><img src="https://raw.githubusercontent.com/duncaneddy/pymdps/main/docs/pages/assets/logo-with-text.png" alt="PyMDPs"></a>
 </p>
 <p align="center">
-    <em>PyMDPs - Solving Markov Decision Processes in PYthon</em>
+    <em>PyMDPs - Solving Markov Decision Processes in Python</em>
 </p>
 <p align="center">
 <a href="https://github.com/duncaneddy/pymdps/actions/workflows/ci.yml" target="_blank">

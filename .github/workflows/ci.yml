@@ -12,5 +12,6 @@ jobs:
   unit-tests:
     uses: ./.github/workflows/tests.yml
 
-  publish-docs:
+  publish-docs: 
+    needs: [unit-tests]
     uses: ./.github/workflows/publish-docs.yml
