@@ -38,11 +38,21 @@ jobs:
       - name: Build library
         run: python -m build
 
+      - name: Parse release version
+        id: parse_ref
+        run: |
+          VERSION="${{ github.ref_name }}"
+          IFS='.' read -ra VER <<< "$VERSION"
+          echo "MAJOR_VERSION=${VER[0]}" >> $GITHUB_OUTPUT
+          echo "MINOR_VERSION=${VER[1]}" >> $GITHUB_OUTPUT
+          echo "PATCH_VERSION=${VER[2]}" >> $GITHUB_OUTPUT
+        shell: bash
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.tar.gz
-          name: pymdps-${{ github.ref_name }}.tar.gz
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}.tar.gz
 
   build-wheels:
     needs: [tests]
@@ -72,11 +82,28 @@ jobs:
       - name: Build library
         run: python -m build
 
+      - name: Parse release version
+        id: parse_ref
+        run: |
+          VERSION="${{ github.ref_name }}"
+          IFS='.' read -ra VER <<< "$VERSION"
+          echo "MAJOR_VERSION=${VER[0]}" >> $GITHUB_OUTPUT
+          echo "MINOR_VERSION=${VER[1]}" >> $GITHUB_OUTPUT
+          echo "PATCH_VERSION=${VER[2]}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Sanitize Python version
+        id: py_version
+        run: echo "PY_VERSION_NO_DOT=${PYTHON_VERSION//./}" >> $GITHUB_OUTPUT
+        shell: bash
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.whl
-          name: pymdps-${{ github.ref_name }}-cp${{ matrix.python-version }}-${{ runner.os }}.whl
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-cp${{ steps.py_version.outputs.PY_VERSION_NO_DOT }}-${{ runner.os }}.whl
 
   publish-release:
     needs: [build-source, build-wheels]
@@ -86,6 +113,8 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
+        with:
+          path: dist
     
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
