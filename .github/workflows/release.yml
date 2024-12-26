@@ -112,10 +112,17 @@ jobs:
       id-token: write
 
     steps:
-      - name: Download artifact
+      # Download all artifacts to dist folder
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          path: dist/
+          name: pymdps-*
+
+      - name: List artifacts
+        run: ls dist
+
+      - name: List current files
+        run: ls
 
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
