@@ -3,7 +3,7 @@ name: Test Python (Subworkflow)
 on: [ workflow_call ]
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
