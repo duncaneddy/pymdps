@@ -115,8 +115,6 @@ jobs:
       # Download all artifacts to dist folder
       - name: Download artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: pymdps-*
 
       - name: List artifacts
         run: ls dist
