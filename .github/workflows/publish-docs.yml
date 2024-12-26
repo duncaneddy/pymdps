@@ -25,4 +25,6 @@ jobs:
         run: make docs
 
       - name: Deploy Docs
-        run: mkdocs gh-deploy --force
+        run: |
+          cd docs
+          mkdocs gh-deploy --force
