@@ -1,10 +1,12 @@
 name: Update Docs
+
 on:
   push:
     branches:
       - main
     paths:
       - docs/**
+
 jobs:
-  update-docs:
+  publish-docs:
     uses: ./.github/workflows/publish-docs.yml
