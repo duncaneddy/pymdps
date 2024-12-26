@@ -114,12 +114,12 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
+        with:
+          path: ./dist
       
-      - name: Move artifacts
-        run: |
-          mkdir -p dist
-          mv ${{ runner.workspace }}/*.tar.gz ${{ runner.workspace }}/*.whl ./dist/
-    
+      - name: Echo pwd
+        run: echo $PWD
+
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 
