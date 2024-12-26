@@ -11,3 +11,5 @@ on:
 jobs:
   unit-tests:
     uses: ./.github/workflows/tests.yml
+  update-docs: 
+    uses: ./.github/workflows/update-docs.yml

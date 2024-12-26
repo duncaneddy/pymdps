@@ -1,7 +1,13 @@
+# OS generated files
+.DS_Store
+
 # Development Environment
 .vscode/
 .idea/
 .python-version
+
+# Documentation
+docs/site/
 
 # Rust
 target/

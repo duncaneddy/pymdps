@@ -30,5 +30,13 @@ install: clean
 test: install-dev
 	pytest -v --cov=python/pymdps --cov-report=term-missing --cov-report=html tests
 
+.PHONY: docs
+docs: install-dev
+	(cd docs && mkdocs build)
+
+.PHONY: serve-docs
+serve-docs: install-dev
+	(cd docs && mkdocs serve)
+
 .PHONY: all
 all: clean test
