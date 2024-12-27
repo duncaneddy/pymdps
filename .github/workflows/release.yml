@@ -65,41 +65,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build under manylinux with Rust
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/io quay.io/pypa/manylinux2014_x86_64 /bin/bash -c '
-            set -e
-            cd /io
-            # Install Rust stable
-            curl https://sh.rustup.rs -sSf | sh -s -- -y
-            source $HOME/.cargo/env
-            # Verify Rust installation
-            rustc --version
-            cargo --version
-            # Install Python build tools
-            python -m pip install --upgrade pip build auditwheel
-            # Build the wheel
-            python -m build --wheel
-            # Repair the wheel for manylinux compatibility
-            auditwheel repair dist/*.whl -w dist
-          '
+      - uses: PyO3/maturin-action@v1
+        with:
+          command: build
+          args: --release -i python${{ matrix.python-version }} 
 
-      - name: Parse release version
-        id: parse_ref
-        run: |
-          VERSION="${{ github.ref_name }}"
-          IFS='.' read -ra VER <<< "$VERSION"
-          echo "MAJOR_VERSION=${VER[0]}" >> $GITHUB_OUTPUT
-          echo "MINOR_VERSION=${VER[1]}" >> $GITHUB_OUTPUT
-          echo "PATCH_VERSION=${VER[2]}" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Sanitize Python version
-        id: py_version
-        run: echo "PY_VERSION_NO_DOT=${PYTHON_VERSION//./}" >> $GITHUB_OUTPUT
-        shell: bash
-        env:
-          PYTHON_VERSION: ${{ matrix.python-version }}
+      - name: Show artifacts
+        run: find . -maxdepth 2
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
