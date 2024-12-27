@@ -86,8 +86,10 @@ nav:
     - api_reference/index.md
   - Reference:
     - reference/index.md
-  # - About:
-  #   - about/index.md
+  - About:
+    - about/index.md
+    - about/contributing.md
+    - about/alternatives.md
   - Author: https://duncaneddy.com
 
 extra_javascript:
