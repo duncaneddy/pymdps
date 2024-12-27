@@ -50,8 +50,4 @@ pip install pymdps
 
 ## Documentation
 
-The documentation is divided into the following sections:
-
-- [Getting Started](getting_started/index.md): A guide to getting started with PyMDPs. This section covers installation instructions and a simple example of creating and solving an MDP.
-- [API Reference](api_reference/index.md): The complete API reference for PyMDPs, including detailed descriptions of all classes and functions.
-- [Reference](reference/index.md): This contains detailed information about the problems, algorithms, models, and other concepts used in PyMDPs.
+The full documentation for PyMDPs is available at https://duncaneddy.github.io/pymdps. The documentation includes a detailed API reference, examples, and tutorials to help you get started.
