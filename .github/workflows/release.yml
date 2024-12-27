@@ -116,11 +116,17 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
 
-      - name: List artifacts
-        run: ls dist
-
       - name: List current files
         run: ls
+
+      - name: Copy artifacts to dist folder
+        run: |
+          mkdir dist
+          cp -r ${{ github.workspace }}/*.tar.gz dist/
+          cp -r ${{ github.workspace }}/*.whl dist/
+
+      - name: List artifacts
+        run: ls dist
 
       - name: Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
