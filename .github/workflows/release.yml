@@ -51,8 +51,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.tar.gz
-          name: $(basename dist/*.tar.gz)
-          
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-${{ runner.os }}-source
+
   build-wheels:
     needs: [tests]
     runs-on: ${{ matrix.os }}
@@ -101,8 +101,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-            path: dist/*.whl
-            name: $(basename dist/*.whl)
+          path: dist/*.whl
+          name: pymdps-${{steps.parse_ref.outputs.MAJOR_VERSION}}m${{steps.parse_ref.outputs.MINOR_VERSION}}p${{steps.parse_ref.outputs.PATCH_VERSION}}-cp${{ steps.py_version.outputs.PY_VERSION_NO_DOT }}-${{ runner.os }}-wheel
 
   publish-release:
     needs: [build-source, build-wheels]
@@ -115,10 +115,17 @@ jobs:
       # Download all artifacts to dist folder
       - name: Download artifacts
         uses: actions/download-artifact@v4
-        with:
-          path: dist
 
       - name: List current files
+        run: find . -maxdepth 3 -ls
+
+      - name: Copy artifacts to dist folder
+        run: |
+          mkdir dist
+          cp -r ${{ github.workspace }}/*-source/* dist/
+          cp -r ${{ github.workspace }}/*-wheel/* dist/
+
+      - name: List artifacts
         run: find . -maxdepth 3 -ls
 
       - name: Upload package to PyPI
