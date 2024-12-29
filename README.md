@@ -12,6 +12,9 @@
     <a href="https://duncaneddy.github.io/pymdps" target="_blank">
         <img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs">
     </a>
+    <a href="https://pypi.org/project/pymdps" target="_blank">
+        <img src="https://img.shields.io/pypi/v/pymdps?color=blue" alt="PyPi">
+    </a>
     <a href="https://github.com/duncaneddy/pymdps/blob/main/LICENSE" target="_blank">
         <img src="https://img.shields.io/badge/License-MIT-green.svg", alt="License">
     </a>
