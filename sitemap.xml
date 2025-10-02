@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/index.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/about/index.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/about/alternatives.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/about/contributing.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/api_reference/index.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/getting_started/index.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/getting_started/first_steps.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+    <url>
+         <loc>https://duncaneddy.github.io/pymdps/reference/index.html</loc>
+         <lastmod>2025-10-02</lastmod>
+    </url>
+</urlset>
