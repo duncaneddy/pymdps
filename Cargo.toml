@@ -5,7 +5,7 @@ edition = "2021"
 exclude = ["/test_data", "/test", "/scripts", "/docs", "/brahe", ".github"]
 
 [dependencies]
-pyo3 =  { version = "0.26.0", features = ["generate-import-lib"] }
+pyo3 =  { version = "0.27.1", features = ["generate-import-lib"] }
 
 [lib]
 name = "_pymdps"
